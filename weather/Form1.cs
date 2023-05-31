@@ -132,7 +132,14 @@ namespace weather
             Form historik = new history();
             historik.Show();
         }
+        private void Bd_Click(object sender, EventArgs e)
+        {
+            Form Bd = new DataBd();
+            Bd.Show();
+        }
 
+        
+        
         private void label11_Click(object sender, EventArgs e)
         {
 

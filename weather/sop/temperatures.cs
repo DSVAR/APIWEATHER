@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 using xNet;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using Npgsql;
 
 namespace weather.sop
 {
@@ -17,6 +19,8 @@ namespace weather.sop
         // переменные для изменения лейбелов в программе
         static public string api = "0a03c34f64c86e7924406f389b77b9f3";
   // ключ  для работы с сервером.
+  //строка подключеня к бд
+  private const string ConnectionString = "Server=localhost;User Id=postgres;Password=125348220;Port=5432;Database=WatherBD;";
 
         static public void tempura()
         {
@@ -54,6 +58,7 @@ namespace weather.sop
                 //установка переменной для выведения и изменения картинки и gif.
                 olk(speed.ToString(), temps.ToString(), feels.ToString(), min.ToString(), max.ToString(), pressure.ToString(), status.ToString());
                 //Функция для  изменения большого количество Label
+                AddDb(Cities,temps.ToString(),pressure.ToString(),speed.ToString());
             }
             catch
             {
@@ -77,6 +82,62 @@ namespace weather.sop
             max.Invoke((MethodInvoker)(() => max.Text = maks));
             pressures.Invoke((MethodInvoker)(() => pressures.Text = pres));
             status.Invoke((MethodInvoker)(() => status.Text = stat));
+
+        }
+        
+        static private void AddDb(string city,string temp, string pressure, string speedWind)
+        {
+            try
+            {
+                using ( var coonection=new NpgsqlConnection(ConnectionString))
+                {
+                    coonection.Open();
+                    string table = "SavedData";
+                  //   NpgsqlCommand command = new NpgsqlCommand();
+                  //   command.Connection = coonection;
+                  //   command.CommandType = CommandType.Text;
+                  //   command.CommandText = $"Select * from \"SavedData\"  ";
+                  //   //command.ExecuteNonQuery();
+                  //
+                  // var t=  command.ExecuteReader();
+
+
+                  NpgsqlCommand commandSecond = new NpgsqlCommand("Insert into \"Data\" " +
+                                                                  "(\"Id\", \"City\",  \"Temp\", \"Pressure\", \"Date\", \"SpeedWind\")" +
+                                                                  $"VALUES ('{Guid.NewGuid()}', '{city}',  '{temp}', '{pressure}', '{DateTime.Now.ToString()}','{speedWind}') ",coonection);
+                  
+                  commandSecond.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
+        }
+
+        public DataTable GetDS()
+        {
+            try
+            {
+                using (var connection=new NpgsqlConnection(ConnectionString) )
+                {
+                    connection.Open();
+                    var ds = new DataSet();
+                    var dt = new DataTable();
+                    NpgsqlDataAdapter da = new NpgsqlDataAdapter("select * from \"Data\"", connection);
+                    ds.Reset();
+                    da.Fill(ds);
+                    dt = ds.Tables[0];
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                var exr = ex.Message;
+                return null;
+            }
+           
 
         }
 

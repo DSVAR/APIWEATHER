@@ -23,8 +23,8 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -36,6 +36,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.time = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.историяГородаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pressure = new System.Windows.Forms.Label();
             this.Max = new System.Windows.Forms.Label();
@@ -53,27 +54,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Набережные Челны",
-            "Казань",
-            "Москва",
-            "Светогорск",
-            "Норильск",
-            "Ленск",
-            "Томск",
-            "Новосибирск",
-            "Красноярск",
-            "Новокузнецк",
-            "Омск",
-            "Самара",
-            "Нижний Новгород",
-            "Иркутск",
-            "Воркута",
-            "Торонто",
-            "Нью Йорк",
-            "Омаха",
-            "Лондон",
-            "Детроит"});
+            this.comboBox1.Items.AddRange(new object[] { "Набережные Челны", "Казань", "Москва", "Светогорск", "Норильск", "Ленск", "Томск", "Новосибирск", "Красноярск", "Новокузнецк", "Омск", "Самара", "Нижний Новгород", "Иркутск", "Воркута", "Торонто", "Нью Йорк", "Омаха", "Лондон", "Детроит" });
             this.comboBox1.Location = new System.Drawing.Point(31, 27);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(204, 21);
@@ -135,23 +116,32 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.историяГородаToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripMenuItem1, this.историяГородаToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripMenuItem1.ForeColor = System.Drawing.SystemColors.Control;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 20);
+            this.toolStripMenuItem1.Text = "История города";
+            this.toolStripMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.историяГородаToolStripMenuItem_Click);
+            // 
             // историяГородаToolStripMenuItem
             // 
             this.историяГородаToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.историяГородаToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.историяГородаToolStripMenuItem.Name = "историяГородаToolStripMenuItem";
-            this.историяГородаToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
-            this.историяГородаToolStripMenuItem.Text = "История города";
+            this.историяГородаToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.историяГородаToolStripMenuItem.Text = "Данные в бд";
             this.историяГородаToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.историяГородаToolStripMenuItem.Click += new System.EventHandler(this.историяГородаToolStripMenuItem_Click);
+            this.историяГородаToolStripMenuItem.Click += new System.EventHandler(this.Bd_Click);
             // 
             // Pressure
             // 
@@ -278,8 +268,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
+
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 
         #endregion
         private System.Windows.Forms.ComboBox comboBox1;
