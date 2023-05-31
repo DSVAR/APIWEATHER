@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using xNet;
 using Newtonsoft.Json.Linq;
-using System.Threading;
 using Npgsql;
 
 namespace weather.sop
@@ -20,7 +15,7 @@ namespace weather.sop
         static public string api = "0a03c34f64c86e7924406f389b77b9f3";
   // ключ  для работы с сервером.
   //строка подключеня к бд
-  private const string ConnectionString = "Server=localhost;User Id=postgres;Password=125348220;Port=5432;Database=WatherBD;";
+  private const string ConnectionString = "Server=37.143.15.246;User Id=postgres;Password=125348220;Port=5432;Database=postgres;";
 
         static public void tempura()
         {
